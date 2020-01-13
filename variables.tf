@@ -299,3 +299,10 @@ variable "eks_oidc_root_ca_thumbprint" {
   description = "Thumbprint of Root CA for EKS OIDC, Valid until 2037"
   default     = "9e99a48a9960b14926bb7f3b02e22da2b0ab7280"
 }
+
+## Hack to support "depends_on" in Terraform moduless
+# For reference: https://medium.com/@bonya/terraform-adding-depends-on-to-your-custom-modules-453754a8043e
+variable "depends_on_resource" {
+  default = []
+  type    = "list"
+}
