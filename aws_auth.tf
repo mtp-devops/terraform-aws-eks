@@ -60,6 +60,10 @@ resource "kubernetes_config_map" "aws_auth" {
     namespace = "kube-system"
   }
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   data = {
     mapRoles = <<EOF
 ${join("", distinct(concat(data.template_file.launch_template_worker_role_arns.*.rendered, data.template_file.worker_role_arns.*.rendered, data.template_file.node_group_arns.*.rendered
